@@ -17,8 +17,5 @@
     "source.organizeImports": "explicit",
     "source.formatDocument": "explicit",
     "source.fixAll.eslint": "explicit"
-  },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
   }
 }

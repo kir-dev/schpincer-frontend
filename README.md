@@ -1,85 +1,36 @@
-# NestJS + NextJS Starter Project by Kir-Dev
-
-This is a starter project for a fullstack application using NestJS and NextJS.
-It includes a basic setup for a NestJS as backend and a NextJS as frontend,
-including shadcn/ui, ESLint, Prettier, and GitHub Actions.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 20
-- Yarn 1.22
-
-### Installation
-
-You only need to install dependencies in the root directory.
+First, run the development server:
 
 ```bash
-yarn install
-```
-
-### Linter and Formatter Configuration
-
-It is a must to use ESLint and Prettier in this project.
-
-Set up ESLint and Prettier in your IDE and check `fix on save` or `format on save` options.
-
-You can run the following commands to check linting and formatting issues.
-
-```bash
-yarn lint
+npm run dev
 # or
-yarn lint:fix
-```
-
-```bash
-yarn format:check
+yarn dev
 # or
-yarn format
+pnpm dev
+# or
+bun dev
 ```
 
-### Development
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can run the backend and frontend separately.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-yarn start:backend # Starts on http://localhost:3001
-```
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```bash
-yarn start:frontend # Starts on http://localhost:3000
-```
+## Learn More
 
-### After Development
+To learn more about Next.js, take a look at the following resources:
 
-You can build the frontend and run the application.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-```bash
-yarn build:frontend
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Or build the backend.
+## Deploy on Vercel
 
-```bash
-yarn build:backend
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-There are recommended GitHub Actions workflows for this setup, which will fail if one of the following commands fails:
-
-```bash
-yarn lint
-```
-
-```bash
-yarn format:check
-```
-
-```bash
-yarn build:backend
-```
-
-## Happy Coding!
-
-
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
