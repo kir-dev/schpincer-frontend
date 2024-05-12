@@ -22,7 +22,7 @@ h3 {
   @apply text-xl font-bold text-slate-700;
 }
 
-p{
+p {
   @apply text-base text-slate-600;
 }
 
