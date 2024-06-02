@@ -5,3 +5,27 @@
 body {
   @apply bg-slate-100;
 }
+
+main {
+  @apply container;
+}
+
+h1 {
+  @apply text-3xl font-bold text-slate-900;
+}
+
+h2 {
+  @apply text-2xl font-bold text-slate-800;
+}
+
+h3 {
+  @apply text-xl font-bold text-slate-700;
+}
+
+p {
+  @apply text-base text-slate-600;
+}
+
+main > section {
+  @apply my-5;
+}
