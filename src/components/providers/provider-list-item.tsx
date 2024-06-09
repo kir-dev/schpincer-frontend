@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { TbCalendarDue } from 'react-icons/tb';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { cn, formatHu } from '@/lib/utils';
+import { formatHu } from '@/lib/utils';
 import { ProviderPreviewDto } from '@/types/provider.type';
 
 interface ProviderProps {
@@ -11,10 +11,7 @@ interface ProviderProps {
 
 export function ProviderListItem({ provider }: ProviderProps) {
   return (
-    <Card
-      className='relative pt-20 text-center mt-20 hover:-translate-y-5 transition-transform cursor-pointer'
-      key={provider.id}
-    >
+    <Card className='relative pt-20 text-center mt-20 hover:-translate-y-5 transition-transform cursor-pointer'>
       <CardHeader>
         <CardTitle>{provider.name}</CardTitle>
       </CardHeader>
@@ -36,7 +33,7 @@ export function ProviderListItem({ provider }: ProviderProps) {
         alt={provider.name}
         width={150}
         height={150}
-        className={cn('object-cover w-32 h-32 absolute -top-16 rounded-full mx-auto left-0 right-0 shadow-md')}
+        className='object-cover w-32 h-32 absolute -top-16 rounded-full mx-auto left-0 right-0 shadow-md'
       />
     </Card>
   );
