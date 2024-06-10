@@ -1,27 +1,26 @@
-'use client';
 import Link from 'next/link';
 import { FaHamburger } from 'react-icons/fa';
 
-export default function Navbar() {
-  const links = [
-    {
-      id: 1,
-      link: 'menu',
-    },
-    {
-      id: 2,
-      link: 'resort',
-    },
-    {
-      id: 3,
-      link: 'about',
-    },
-    {
-      id: 4,
-      link: 'contact',
-    },
-  ];
+const links = [
+  {
+    id: 1,
+    link: 'menu',
+  },
+  {
+    id: 2,
+    link: 'resort',
+  },
+  {
+    id: 3,
+    link: 'about',
+  },
+  {
+    id: 4,
+    link: 'contact',
+  },
+];
 
+export default function Navbar() {
   return (
     <div className='flex justify-between items-center w-full h-20 px-4 text-black bg-white'>
       <div className='flex items-center justify-center'>
