@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { ProductPreviewDto } from '@/types/product.type';
 
 interface ProductProps {
@@ -9,18 +10,23 @@ interface ProductProps {
 
 export function ProductListItem({ product }: ProductProps) {
   return (
-    <Card className=' ml-5 mt-10 w-500 text-center hover:-translate-y-5 transition-transform cursor-pointer'>
+    <Card
+      className='relative pt-20 text-center mt-20 ml-20 mr-20 hover:-translate-y-5 transition-transform cursor-pointer'
+      key={product.id}
+    >
       <CardHeader>
         <CardTitle>{product.name}</CardTitle>
       </CardHeader>
       <CardContent>
         <p>{product.description}</p>
       </CardContent>
-      <Image className='justify-center' src={product.img} width={300} height={600} alt='' />
-      <CardFooter className='mt-10 flex justify-between'>
-        <p>{product.price} JMF</p>
-        <button>Add to cart</button>
-      </CardFooter>
+      <Image
+        src={product.img}
+        alt={product.name}
+        width={150}
+        height={150}
+        className={cn('object-cover w-32 h-32 absolute -top-16 rounded-full mx-auto left-0 right-0 shadow-md')}
+      />
     </Card>
   );
 }
