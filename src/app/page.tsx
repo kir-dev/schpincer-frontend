@@ -1,11 +1,21 @@
 import React from 'react';
 
-import { HelloWorld } from '@/components/hello-world';
+import FeaturedProducts from '@/components/featured/featured-products';
+import CurrentOpening from '@/components/opening/current-opening';
+import CurrentOrder from '@/components/order/current-order';
 
 export default function Home() {
   return (
-    <main className='flex items-center justify-center'>
-      <HelloWorld className='mt-10' />
+    <main className='flex-col items-center justify-center'>
+      <section>
+        <CurrentOrder />
+      </section>
+      <section>
+        <CurrentOpening />
+      </section>
+      <section>
+        <FeaturedProducts />
+      </section>
     </main>
   );
 }
