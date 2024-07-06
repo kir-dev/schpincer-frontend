@@ -15,6 +15,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    browser: true,
   },
   ignorePatterns: ['.eslintrc.js', '.prettierrc.js'],
   rules: {
