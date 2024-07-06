@@ -4,10 +4,11 @@ export type ProductDto = {
   description: string;
   img: string;
   price: number;
+  available: boolean;
 };
 
 export type FeaturedProductsDto = {
   products: ProductPreviewDto[];
 };
 
-export type ProductPreviewDto = Omit<ProductDto, 'members'>;
+export type ProductPreviewDto = ProductDto;
