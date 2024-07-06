@@ -2,4 +2,3 @@ node_modules
 .idea
 dist
 .next
-/src/components/ui
