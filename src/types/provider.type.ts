@@ -1,3 +1,5 @@
+import { ProductDto } from '@/types/product.type';
+
 export type ProviderDto = {
   id: string;
   name: string;
@@ -7,6 +9,7 @@ export type ProviderDto = {
   color: string;
   nextOpening: OpeningDto | undefined;
   members: MemberDto[];
+  products: ProductDto[];
 };
 
 export type OpeningDto = {
@@ -31,4 +34,4 @@ export type ResortDto = {
   providers: ProviderPreviewDto[];
 };
 
-export type ProviderPreviewDto = Omit<ProviderDto, 'members'>;
+export type ProviderPreviewDto = Omit<ProviderDto, 'members' | 'products'>;

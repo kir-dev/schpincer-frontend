@@ -1,0 +1,368 @@
+openapi: 3.0.0
+info:
+  title: Schpincér API
+  version: 1.0.0
+tags:
+  - name: auth
+    description: Authentication
+  - name: resort
+    description: Resort details
+  - name: providers
+    description: Provider list and details
+  - name: products
+    description: Product list
+  - name: profile
+    description: User profile
+  - name: orders
+    description: Order list
+  - name: checkout
+    description: Checkout
+paths:
+  /api/login:
+    get:
+      tags:
+        - auth
+      summary: Redirect to AuthSch
+      responses:
+        302:
+          description: Redirects to authentication service
+  /api/resort:
+    get:
+      tags:
+          - resort
+      summary: Get resort details
+      responses:
+        200:
+          description: Returns resort details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResortDto'
+  /api/providers:
+    get:
+      tags:
+        - providers
+      summary: List all providers with preview information
+      parameters:
+        - name: hasOpening
+          in: query
+          schema:
+            type: boolean
+          description: Filter for providers with opening
+      responses:
+        200:
+          description: An array of provider preview data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProviderPreviewDto'
+  /api/providers/{id}:
+    get:
+      tags:
+        - providers
+      summary: Get full provider details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Detailed provider information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderDto'
+  /api/products:
+    get:
+      tags:
+        - products
+      summary: List all products
+      parameters:
+        - name: available
+          in: query
+          schema:
+            type: boolean
+          description: Filter for availability
+      responses:
+        200:
+          description: An array of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
+  /api/profile:
+    get:
+      tags:
+        - profile
+      summary: Get user profile
+      responses:
+        200:
+          description: User profile data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+  /api/orders:
+    get:
+      tags:
+        - orders
+      summary: List all orders
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/OrderStatus'
+          description: Filter for order status
+      responses:
+        200:
+          description: An array of order data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderDto'
+  /api/checkout:
+    post:
+      tags:
+        - checkout
+      summary: Create a checkout request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequestDto'
+      responses:
+        201:
+          description: Checkout created
+  /api/rate/{id}:
+    post:
+      tags:
+        - orders
+      summary: Submit a rating
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateRequestDto'
+      responses:
+        201:
+          description: Rating submitted
+  /api/room:
+    post:
+      tags:
+        - profile
+      summary: Save or update room details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoomRequestDto'
+      responses:
+        201:
+          description: Room details saved
+components:
+  schemas:
+    ResortDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderPreviewDto'
+    ProviderPreviewDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        bgImage:
+          type: string
+        color:
+          type: string
+        nextOpening:
+          $ref: '#/components/schemas/OpeningDto'
+    ProviderDto:
+      allOf:
+        - $ref: '#/components/schemas/ProviderPreviewDto'
+        - type: object
+          properties:
+            members:
+              type: array
+              items:
+                $ref: '#/components/schemas/MemberDto'
+            products:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductDto'
+    ProductDto:
+        type: object
+        properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            image:
+              type: string
+            price:
+              type: number
+            available:
+              type: boolean
+    MemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+        image:
+          type: string
+    OpeningDto:
+      type: object
+      properties:
+        dateOrderOpen:
+          type: string
+        dateOrderClose:
+          type: string
+        description:
+          type: string
+    RoomRequestDto:
+      type: object
+      properties:
+        room:
+          type: number
+    RateRequestDto:
+      type: object
+      properties:
+        comment:
+          type: string
+        quality:
+          type: number
+        speed:
+          type: number
+        price:
+          type: number
+        overall:
+          type: number
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        passType:
+          type: string
+        room:
+          type: number
+    CheckoutRequestDto:
+      type: object
+      properties:
+        room:
+          type: object
+          properties:
+            room:
+              type: number
+            save:
+              type: boolean
+        items:
+          type: array
+          items:
+              $ref: '#/components/schemas/CheckoutRequestItemDto'
+    CheckoutRequestItemDto:
+      type: object
+      properties:
+        productId:
+          type: string
+        quantity:
+          type: number
+        extras:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemExtraDto'
+    ItemExtraDto:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: array
+          items:
+            type: string
+    OrderItemDto:
+      type: object
+      properties:
+          id:
+            type: string
+          name:
+            type: string
+          productId:
+            type: string
+          quantity:
+            type: number
+          extras:
+            type: array
+            items:
+              $ref: '#/components/schemas/ItemExtraDto'
+
+    OrderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        createdOn:
+          type: string
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        room:
+          type: number
+        estimatedDelivery:
+          type: string
+        price:
+          type: number
+        comment:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemDto'
+    OrderStatus:
+      type: string
+      enum:
+        - PENDING
+        - PROCESSING
+        - DELIVERING
+        - DELIVERED
+        - CANCELED

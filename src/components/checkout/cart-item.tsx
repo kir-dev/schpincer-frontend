@@ -47,13 +47,15 @@ export function CartItem(props: CartItemProps) {
           </div>
           <p className='text-sm min-[465px]:text-base font-bold'>{props.price * props.quantity} JMF</p>
         </div>
-        {props.extras && (
-          <div className='flex items-center gap-2'>
-            <FaPlusCircle className='size-6 text-green-600' />
-            <p className='text-sm'>Extrák:</p>
-            <p className='text-sm'>{props.extras.join(', ')}</p>
-          </div>
-        )}
+        <div className='flex items-center gap-2'>
+          <FaPlusCircle className='size-6 text-green-600' />
+          <p className='text-sm'>Extrák:</p>
+          {props.extras.map((extra) => (
+            <p key={extra.key} className='text-sm'>
+              {extra.value.join(', ')}
+            </p>
+          ))}
+        </div>
         <div className='flex items-center justify-between w-full gap-4'>
           <Select defaultValue={`${props.quantity}db`} onValueChange={updateQuantity}>
             <SelectTrigger className='w-full basis-2/3 focus:ring-0 focus:ring-offset-0'>

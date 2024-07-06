@@ -37,7 +37,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className='fixed top-0 w-full'>
+    <header className='sticky top-0 w-full'>
       <div className='flex justify-between items-center w-full h-20 px-4 text-black bg-white'>
         <div className='flex items-center justify-center'>
           <FaHamburger size={30} />
